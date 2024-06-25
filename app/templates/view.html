@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Memories Holder 📔</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #212529;
+  }
+  h2 {
+    text-align: center;
+    color: #007bff;
+    margin-top: 20px;
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  .action-links {
+    text-align: center;
+    color: #6c757d;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  .action-links a {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 24px;
+  }
+  .action-links a:hover {
+    color: #0056b3;
+  }
+  .user-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .user-info img {
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  .user-info span {
+    color: #6c757d;
+    font-size: 24px;
+  }
+  .entry {
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin: 20px auto;
+    max-width: 700px; /* Adjusted max-width */
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  .entry p {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  .entry img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h2>Your Memories Holder 📔</h2>
+
+<h3 class="action-links">Generate new <a href="{{ url_for('poof') }}" style="color: #007bff; text-decoration: none;">memories</a> or <a href="{{ url_for('logout') }}" style="color: #dc3545; text-decoration: none;">log out</a>?</h3>
+
+<div class="user-info">
+    <img src="{{ picture }}" width="25" height="25" referrerpolicy="no-referrer">
+    <span>{{ name }} - {{ email }}</span>
+</div>
+
+{% for entry in entries %}
+<div class="entry">
+    <!-- Query from entry -->
+    <p><strong>Your input:</strong> {{ entry['query'] }}</p>
+
+    <!-- Image from entry -->
+    <div style="text-align:center;">
+        <img src="data:image/png;base64,{{ entry['image'] }}" alt="Image">
+    </div>
+
+    <!-- Text from entry -->
+    <p>{{ entry['pun'] }}</p>
+    <p>{{ entry['date'] }}</p>
+</div>
+{% endfor %}
+
+<h3 class="action-links"><a href="{{ url_for('view') }}" style="color: #4CAF50; text-decoration: none;">Refresh</a>to view more</h3>
+
+</body>
+</html>

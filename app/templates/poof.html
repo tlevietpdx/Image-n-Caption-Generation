@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Wistive</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    padding-right: 40px; /* Adjust the right padding as needed */
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .textbox {
+    width: 100%;
+    height: 100px; /* Adjust height as needed */
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  .submit-btn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .submit-btn:hover {
+    background-color: #45a049; /* Darker Green */
+  }
+
+  .submit-btn:disabled {
+    background-color: #8e908e;
+  }
+  /* Styles from index.html for consistency */
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  p {
+    text-align: center;
+    color: #888;
+    margin-bottom: 20px;
+  }
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h2>Welcome, {{ name }} 🌟</h2>
+  </div>
+  <div class="header">
+    <!-- Daily quota -->
+    <h3>{{ daily_quota }} 📈</h3>
+  </div>
+
+  
+  <!-- Description -->
+  <p>Now, let your imagination flyyyyyyyyy ✨</p>
+  
+  <!-- Form -->
+  <form action="{{ url_for('poof') }}" method="post">
+    <!-- Textarea for query -->
+    <textarea class="textbox" name="query" placeholder="Describe your idea to generate an image (max 1000 characters)">{{ generated }}</textarea>
+    
+    <!-- Submit button -->
+    <button type="submit" name="submit" class="submit-btn" {% if enable_button %} {% else %} disabled {% endif %} value="user">Submit ✅</button>
+    
+    <!-- Generate idea button -->
+    <button type="submit" name="submit" class="submit-btn" value="ai">Generate me an idea 🚀</button>
+  </form>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const textarea = document.querySelector('.textbox');
+    const submitBtn = document.querySelector('.submit-btn');
+    
+    textarea.addEventListener('input', function() {
+      const words = this.value.length;
+      submitBtn.disabled = words > 1000;
+    });
+  });
+</script>
+
+</body>
+</html>

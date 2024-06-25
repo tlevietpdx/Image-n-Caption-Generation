@@ -1,0 +1,11 @@
+Create Eden account to get API key
+Enable vertex AI service to access to LLM
+Run this line to authorize `gcloud auth application-default login` (more at https://cloud.google.com/docs/authentication/provide-credentials-adc#local-dev)
+File is store at %APPDATA%\gcloud\application_default_credentials.json (Windows only)
+C:\Users\Prometheus\AppData\Roaming\gcloud\...
+Setup a service account and add a vertex AI service agent permission
+Create and download service account credentials to access database and add access service account to buckets
+
+After successful deployment
+https://codelabs.cs.pdx.edu/labs/C08.3g_oauth2_gb/index.html?index=..%2F..cs430#9
+Setup identity provider on Google Cloud 

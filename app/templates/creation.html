@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Creations</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    color: #ff6f61;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .entry {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px auto;
+    max-width: 600px;
+  }
+  .entry p {
+    margin-bottom: 10px;
+  }
+  .entry img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+  .wistive-link, .mind-link {
+    color: #6610f2;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+  }
+  .wistive-link:hover, .mind-link:hover {
+    color: #4d089a;
+  }
+  .links-container {
+    text-align: center;
+    margin-top: 10px; /* Add space above the links */
+  }
+  .links-container > div {
+    display: inline-block;
+    margin: 0 40px; /* Adjust margin between links */
+  }
+</style>
+</head>
+<body>
+
+<h1>Be hold! Your creation! 🎨</h1>
+
+{% for entry in entries %}
+<div class="entry">
+    <!-- Query from entry -->
+    <p><strong>Your input:</strong> {{ entry['query'] }}</p>
+
+    <!-- Image from entry -->
+    <div style="text-align:center;">
+        <img src="data:image/png;base64,{{ entry['image'] }}" alt="Image">
+    </div>
+
+    <!-- Text from entry -->
+    <p>{{ entry['pun'] }}</p>
+</div>
+{% endfor %}
+
+<div class="links-container">
+  <div>
+    <h3>Feeling <a href="{{ url_for('poof') }}" class="wistive-link">wistive</a> 🪄?</h3>
+  </div>
+
+  <div>
+    <h3>Peek into <a href="{{ url_for('view') }}" class="mind-link">your mind</a> 💀?</h3>
+  </div>
+</div>
+
+</body>
+</html>
